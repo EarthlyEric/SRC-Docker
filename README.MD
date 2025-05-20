@@ -4,4 +4,5 @@ This project is a Docker image for SRC.
 
 ## Redroid require
 https://github.com/remote-android/redroid-doc/tree/master/deploy
+https://github.com/ayasa520/redroid-script
 

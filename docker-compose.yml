@@ -11,7 +11,7 @@ services:
       - './src-config:/StarRailCopilot/config'
       - '/etc/localtime:/etc/localtime:ro'
   emulator:
-    image: kylindemons/redroid:15.0.0_amd64-GApps-latest
+    image: redroid/redroid:11.0.0_gapps
     container_name: emulator
     restart: always
     stdin_open: true

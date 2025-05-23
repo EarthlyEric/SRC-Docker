@@ -1,6 +1,6 @@
 FROM node:16
 
-ENV DEVICE_HOST=""
+ENV DEVICE_HOST "emulator:5555"
 ENV LANG C.UTF-8
 WORKDIR /ws-scrcpy
 

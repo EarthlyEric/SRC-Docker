@@ -1,0 +1,18 @@
+FROM node:16
+
+ENV DEVICE_HOST=""
+ENV LANG C.UTF-8
+WORKDIR /ws-scrcpy
+
+RUN npm install -g node-gyp
+RUN apt update;apt install android-tools-adb -y
+RUN git clone https://github.com/NetrisTV/ws-scrcpy.git .
+RUN npm install
+RUN npm run dist
+
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+EXPOSE 8000
+
+CMD ["/start.sh"]

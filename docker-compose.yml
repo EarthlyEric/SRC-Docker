@@ -45,4 +45,4 @@ services:
     depends_on:
       - emulator
     environment:
-      - DEVICE_IP=emulator:8101
+      - DEVICE_IP=emulator:5555

@@ -41,7 +41,7 @@ services:
     container_name: ws-scrcpy
     restart: always
     ports:
-      - "8102:8080"
+      - "8102:8000"
     depends_on:
       - emulator
     environment:

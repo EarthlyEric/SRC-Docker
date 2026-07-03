@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: src
-    restart: always
+    restart: unless-stopped
     ports:
       - "8100:22367"
     volumes:
@@ -13,7 +13,7 @@ services:
   emulator:
     image: redroid/redroid:11.0.0_gapps_ndk
     container_name: emulator
-    restart: always
+    restart: unless-stopped
     stdin_open: true
     tty: true
     privileged: true
@@ -39,7 +39,7 @@ services:
       context: .
       dockerfile: Dockerfile2
     container_name: ws-scrcpy
-    restart: always
+    restart: unless-stopped
     ports:
       - "8102:8000"
     depends_on:

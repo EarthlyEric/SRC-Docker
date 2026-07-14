@@ -1,26 +1,28 @@
 services:
-  src:
+  starrailcopilot:
+    image: starrailcopilot
     build:
-      context: .
+      context: ./starrailcopilot
       dockerfile: Dockerfile
     container_name: src
     restart: unless-stopped
     ports:
       - "8100:22367"
     volumes:
-      - './src-config:/StarRailCopilot/config'
+      - './data/src-config:/StarRailCopilot/config'
       - '/etc/localtime:/etc/localtime:ro'
   emulator:
-    image: redroid/redroid:11.0.0_gapps_ndk
+    image: emulator
+    build:
+      context: ./redroid-script
+      dockerfile: Dockerfile
     container_name: emulator
     restart: unless-stopped
     stdin_open: true
     tty: true
     privileged: true
-    ports:
-      - "8101:5555"
     volumes:
-      - ./redroid-data:/data
+      - ./data/redroid-data:/data
     command:
       - androidboot.redroid_width=1280
       - androidboot.redroid_height=720
@@ -35,13 +37,14 @@ services:
       - ro.enable.native.bridge.exec=1
       - ro.dalvik.vm.native.bridge=libndk_translation.so
   ws-scrcpy:
+    image: ws-scrcpy
     build:
-      context: .
-      dockerfile: Dockerfile2
+      context: ./ws-scrcpy
+      dockerfile: Dockerfile
     container_name: ws-scrcpy
     restart: unless-stopped
     ports:
-      - "8102:8000"
+      - "8101:8000"
     depends_on:
       - emulator
     environment:
